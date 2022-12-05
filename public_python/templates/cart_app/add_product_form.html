@@ -1,0 +1,24 @@
+{% extends 'cart_app/base_cart.html' %}
+{% load static %}
+{% block content %}
+{% include 'messages.html' %}
+<body class="background-color">
+    <div style="margin-left: 40px; margin-top: 10px" class="add_product_form">
+        <form action="/shopping-cart/add_product/" method="post">
+            {% csrf_token %}
+            <h3>Add product to the database:</h3>
+            (Other users will not see this product)<br>
+            <input class="add_product" id="product_name" type="text" name="product_name" placeholder="Product" maxlength="30">
+            <br>
+
+        {% for i in category %}
+            <input type="radio" id="{{i.id}}" name="radiocat" value="{{i.id}}">
+            <label>{{ i.category_name }}</label><br>
+        {% endfor %}
+            <input class="add_product_button" type="submit" value="Add product"><br>
+
+        </form>
+    </div>
+</body>
+
+{% endblock %}

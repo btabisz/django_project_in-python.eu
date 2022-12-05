@@ -1,0 +1,46 @@
+{% extends 'cart_app/base_cart.html' %}
+{% load static %}
+{% block content %}
+{% include 'messages.html' %}
+<body class="background-color">
+
+<table border="0" cellpadding="15">
+    <tr>
+            <td width="250" valign="top">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <input class="product_list_search" id="product_name" type="text" name="product_name" placeholder="Search product" maxlength="30">
+                        <br>
+                    {% for i in category %}
+                        <input type="radio" id="{{i.id}}" name="radiocat" value="{{i.id}}">
+                        <label>{{ i.category_name }}</label><br>
+                    {% endfor %}
+                    <input class="product_list_search_button" type="submit" value="Search"><br>
+                </form>
+        <br>
+
+            </td>
+            <td valign="top">
+                <form action="/shopping-cart/add_to_cart/" method="post">
+                    {% csrf_token %}
+
+                    {% for product in product %}
+                    <div class="product_list">
+                        <center>
+                            <table border="0" cellpadding="4">
+                                <tr>
+                                    <td style="padding-left: 10px" width="280">{{ product.product_name }}</td>
+                                    <td width="180">{{ product.category }}</td>
+                                    <td><button class="product_list_button" type="submit" name="product" value="{{product.id}}">Add to shopping list</button> </td>
+                                </tr>
+
+                            </table>
+                        </center>
+                    </div>
+                    {% endfor %}
+                </form>
+            </td>
+    </tr>
+</table>
+</body>
+{% endblock %}

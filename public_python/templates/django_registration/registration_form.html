@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'messages.html' %}
+<body class="background-color">
+<br>
+<form action="/accounts/register/" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input class="register_button" type="submit" value="Create Account">
+</form>
+
+
+</body>
+
+{% endblock %}

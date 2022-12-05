@@ -1,0 +1,29 @@
+{% extends 'cart_app/base_cart.html' %}
+{% load static %}
+{% block content %}
+{% include 'messages.html' %}
+<body class="background-color">
+<div style="margin-left: 40px; margin-top: 10px" class="add_product_form">
+<h3>Shopping list:</h3>
+<form action="/shopping-cart/delete_from_cart/" method="post">
+    {% csrf_token %}
+        {% for i in product %}
+            <div class="product_list" style="margin-left: 0px">
+
+                                <table border="0" cellpadding="4">
+                                    <tr>
+                                        <td width="30" style="padding-left: 8px">{{ forloop.counter }}</td>
+                                        <td width="280">{{ i.product.product_name }}</td>
+                                        <td width="170">{{ i.product.category }}</td>
+                                        <td><button class="product_list_button" type="submit" name="product" value="{{i.product.id}}">Delete</button> </td>
+                                    </tr>
+                                </table>
+
+            </div>
+        {% endfor %}
+
+</form>
+</div>
+</body>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'messages.html' %}
+<body class="background-color">
+<br>
+<div style="margin-left: 30px">
+    <center><h3>Welcome to in-python.eu,<br>choose an application:</h3></center><br>
+
+
+<table border="0" width="700" style="margin-left:auto;margin-right:auto;">
+    <tr>
+    <td><center>
+        <div class="card" style="width: 18rem;">
+        <img src="../static/img/cart_pic.jpg" class="card-img-top" alt="Image loading error">
+            <div class="card-body">
+            <h5 class="card-title">Shopping cart</h5>
+            <p class="card-text">Create your own shopping list, so you don't forget to buy anything.</p>
+            <a href="/shopping-cart/my_search/" class="btn btn-primary">Try shopping list</a>
+            </div>
+        </div>
+
+    </center></td>
+    <td><center>
+        <div class="card" style="width: 18rem;">
+        <img src="../static/img/weather_pic.jpg" class="card-img-top" alt="Image loading error">
+            <div class="card-body">
+            <h5 class="card-title">Actual weather App</h5>
+            <p class="card-text">Check the current weather in the place of your choice.</p>
+<!--            <a href="#" class="btn btn-primary">Check weather</a>-->
+                <a href="" class="btn btn-primary">Coming soon</a>
+            </div>
+        </div></center></td>
+    </tr>
+
+</table></center>
+
+
+
+
+
+
+</div>
+
+
+</div>
+</body>
+
+{% endblock %}
