@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pl">
+<link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon-32x32.png' %}">
+<head>
+    <meta charset="UTF-8">
+    <title>in-python.eu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+
+        {% if user.is_authenticated %}
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+        <a class="nav-link" href="{% url 'airports_view' %}">Airport data<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'metar_view' %}">METAR<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'taf_view' %}">TAF<span class="sr-only">(current)</span></a>
+      </li>
+       <li class="nav-item active">
+        <a class="nav-link" href="{% url 'significant_view' %}">Significant<span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+        <a class="nav-link" href="{% url 'home' %}">Change App <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'update_user' %}">{% if request.user.is_authenticated %}{{ request.user }}{% endif %}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+      </li>
+    </ul>
+       {% else %}
+         <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item" style="text-align: left">
+        <a class="nav-link"  href="{% url 'login' %}">Sign in</a>
+      </li>
+      <li class="nav-item" style="text-align: left">
+        <a class="nav-link"  href="{% url 'django_registration_register' %}">New account</a>
+      </li>
+          {% endif %}
+    </ul>
+  </div>
+</nav>
+
+
+{% block content %}
+
+{% endblock %}
+
+
+<br><br><br><br>
+<footer>
+  <p>Bartosz Tabisz, bartosz.tabisz@gmail.com</p>
+</footer>
+
+</body>
+</html>

@@ -19,10 +19,10 @@ def add_product(request):
     cat_id = request.POST.get('radiocat', None)
 
     if prod_name is "":
-        messages.error(request, 'Nie podano nazwy produktu!')
+        messages.error(request, 'Product name not specified!')
 
     if cat_id is None:
-        messages.add_message(request, messages.ERROR, 'Nie wybrano kategorii produktu!')
+        messages.add_message(request, messages.ERROR, 'Product category not selected!')
 
     if prod_name and cat_id is not None:
         user = request.user
@@ -30,13 +30,13 @@ def add_product(request):
         prod = Product.objects.filter(Q(user_id = user.id) | Q(user_id = 1))
         for i in prod:
             if str(prod_name.upper()) == str(i.product_name.upper()):
-                messages.add_message(request, messages.ERROR, 'Produkt: "%s" - już jest w bazie!' %prod_name)
+                messages.add_message(request, messages.ERROR, 'Product: "%s" - already in the database' %prod_name)
                 return redirect('/shopping-cart/add_product_view')
 
         formatted_name = prod_name.lower().capitalize()
         data = Product(product_name=formatted_name, category=category, user_id=user)
         data.save()
-        messages.add_message(request, messages.SUCCESS, 'Produkt został dodany!')
+        messages.add_message(request, messages.SUCCESS, 'The product has been added!')
         return redirect('/shopping-cart/add_product_view')
 
     return redirect('/shopping-cart/add_product_view')
@@ -57,12 +57,12 @@ def add_to_cart(request):
     product = Product.objects.get(id=product_id)
     for i in products_in_cart:
         if product.id == i.product.id:
-            messages.add_message(request, messages.WARNING, 'Produkt jest już w koszyku!')
+            messages.add_message(request, messages.WARNING, 'The product is already in the cart!')
             return redirect('/shopping-cart/my_search')
 
     data = Cart(product=product, user=user)
     data.save()
-    messages.add_message(request, messages.INFO, 'Produkt został dodany do listy!')
+    messages.add_message(request, messages.INFO, 'The product has been added to the list!')
     return redirect('/shopping-cart/my_search')
 
 
@@ -98,6 +98,6 @@ def delete_from_cart(request):
     product = Product.objects.get(id=product_id)
     data = Cart.objects.filter(product=product, user=user)
     data.delete()
-    messages.add_message(request, messages.INFO, 'Produkt został usunięty z listy!')
+    messages.add_message(request, messages.INFO, 'The product has been removed from the list!')
     return redirect('/shopping-cart/cart')
 

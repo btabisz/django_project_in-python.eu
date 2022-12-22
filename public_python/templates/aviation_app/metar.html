@@ -1,0 +1,26 @@
+{% extends 'aviation_app/base_aviation.html' %}
+{% load static %}
+{% block content %}
+{% include 'messages.html' %}
+<body class="background-color-aviation">
+<div style="margin-left: 40px; margin-top: 10px">
+<h3>Find METAR</h3>
+    <br>
+
+<form action="?location=" method="get">
+    <input class="product_list_search" type="text" name="location" placeholder="City or ICAO code" maxlength="15">
+    <input class="product_list_search_button" type="submit" value="Search">
+</form>
+<br>
+    <b>{{ data }}</b>
+
+    {% if error %}
+    {{ error }}
+    <a href="https://www.checkwxapi.com/station/search" target="_blank">here.</a>
+    {% endif %}
+
+
+
+</div>
+</body>
+{% endblock %}

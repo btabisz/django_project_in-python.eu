@@ -1,0 +1,23 @@
+{% extends 'aviation_app/base_aviation.html' %}
+{% load static %}
+{% block content %}
+{% include 'messages.html' %}
+<body class="background-color-aviation">
+<div style="margin-left: 40px; margin-right: 200px; margin-top: 10px">
+<h3>Significant PL</h3>
+    <br>
+<img src="https://awiacja.imgw.pl/dane_cbpl/SWC_PL_EPWA.GIF" alt="Significant EPWA" width="800" height="578">
+
+
+    <b>{{ data }}</b>
+
+    {% if error %}
+    {{ error }}
+    <a href="https://www.checkwxapi.com/station/search" target="_blank">here.</a>
+    {% endif %}
+
+
+
+</div>
+</body>
+{% endblock %}

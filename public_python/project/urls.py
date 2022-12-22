@@ -7,6 +7,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', homepage, name='home'),
     path('shopping-cart/', include('cart_app.urls')),
+    path('aviation/', include('aviation_app.urls')),
     path('accounts/activate/complete/', activation_complete, name="activation_complete"),
     path('accounts/register/complete/', register_complete, name="register_complete"),
     path('accounts/', include('django_registration.backends.activation.urls')),
